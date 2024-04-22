@@ -23,6 +23,8 @@ jobs:
           NEW_VER: ${{ env.NEW_VER }} # this comes from the python script
           BRANCH_NAME: ${{ github.ref_name }}
         run: |
+          echo "${{ secrets.MASTER_KEY }}" > token.txt
+          gh auth login --with-token < token.txt
           git config --global user.name $COMMIT_USERNAME
           git config --global user.email $COMMIT_USER_EMAIL
           git add .
