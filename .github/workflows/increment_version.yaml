@@ -8,6 +8,9 @@ jobs:
     if: ${{ github.actor }} != 'jake94a'
     runs-on: ubuntu-20.04
     steps:
+      - name: echo actor
+        run: |
+          echo ${{ github.actor }}
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
