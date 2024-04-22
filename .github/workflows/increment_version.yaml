@@ -16,7 +16,7 @@ jobs:
         env:
           ACTOR: ${{ github.actor }}
         run: |
-          if [ $ACTOR = 'jake94a' ]; then exit 0
+          if [ $ACTOR = 'jake94a' ]; then exit 0; fi
 
       - uses: actions/checkout@v4
         with:
