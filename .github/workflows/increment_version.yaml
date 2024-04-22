@@ -5,7 +5,7 @@ on:
 
 jobs:
   increment-version:
-    if: ${{ github.actor }} != 'jake94a'
+    if: github.actor != 'jake94a'
     runs-on: ubuntu-20.04
     steps:
       - name: echo actor
@@ -13,10 +13,11 @@ jobs:
           echo ${{ github.actor }}
 
       - name: if actor is me, skip
+        if: ${{ github.actor }} != 'jake94a'
         env:
           ACTOR: ${{ github.actor }}
         run: |
-          if [ $ACTOR = 'jake94a' ]; then exit 0; fi
+          if [ $ACTOR = 'jake94a' ]; then exit 1; fi
 
       - uses: actions/checkout@v4
         with:
