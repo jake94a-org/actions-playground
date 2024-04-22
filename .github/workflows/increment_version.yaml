@@ -22,11 +22,13 @@ jobs:
           COMMIT_USER_EMAIL: 54042868+jake94a@users.noreply.github.com
           NEW_VER: ${{ env.NEW_VER }} # this comes from the python script
           BRANCH_NAME: ${{ github.ref_name }}
+          MASTER_KEY: ${{ secrets.MASTER_KEY }}
         run: |
-          echo "${{ secrets.MASTER_KEY }}" > token.txt
+          echo "$MASTER_KEY" > token.txt
           gh auth login --with-token < token.txt
           git config --global user.name $COMMIT_USERNAME
           git config --global user.email $COMMIT_USER_EMAIL
+          git config --global credential.helper '!f() { echo "password=$MASTER_KEY"; }; f'
           git add .
           git commit -m "new version $NEW_VER"
           git push origin $BRANCH_NAME
