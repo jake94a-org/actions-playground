@@ -11,6 +11,13 @@ jobs:
       - name: echo actor
         run: |
           echo ${{ github.actor }}
+
+      - name: if actor is me, skip
+        env:
+          ACTOR: ${{ github.actor }}
+        run: |
+          if [ $ACTOR = 'jake94a' ]; then exit 0
+
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
